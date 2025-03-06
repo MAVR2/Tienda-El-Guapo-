@@ -2,6 +2,11 @@
 {% block title %}Historial de compras{% endblock %}
 {% block content %}
 <h1 class="text-center">Historial de compras</h1>
+{% if user.is_staff %}
+<div class="alert alert-danger" role="alert">
+    No tienes permisos para ver el historial de compras
+</div>
+{% else %}
     <table class="table table-striped">
         <thead>
             <tr>
@@ -25,4 +30,6 @@
                 </tr>
             {% endfor %}
         </tbody>
+    </table>
+{% endif %}
 {% endblock %}

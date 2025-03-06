@@ -3,12 +3,16 @@
 {% block title %}Editar producto{% endblock %}
 
 {% block content %}
-
+    {% if user.is_staff%}
     <h1>Editar producto</h1>
     <form method='POST' enctype='multipart/form-data'>
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Guardar cambios</button>
     </form>
-
+    {% else %}
+    <div class="alert alert-danger" role="alert">
+        No tienes permisos para editar productos
+    </div>
+    {% endif %}
 {% endblock %}

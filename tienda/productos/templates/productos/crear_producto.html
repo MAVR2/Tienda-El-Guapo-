@@ -3,9 +3,15 @@
 {% block title %}Crear producto{% endblock %}
 
 {% block content %}
+{% if user.is_staff %}
     <form method='POST' enctype='multipart/form-data'>
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Crear producto</button>
     </form>
+{% else %}
+    <div class="alert alert-danger" role="alert">
+        No tienes permisos para crear productos
+    </div>
+{% endif %}
 {% endblock %}

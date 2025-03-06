@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}Ventas{% endblock %}
+{% block title %}compras{% endblock %}
 
 {% block content %}
-    <h1 class="text-center">Ventas</h1>
+{% if user.is_staff %}
+    <h1 class="text-center">compras</h1>
     <table class="table table-bordered table-striped table-hover">
         <thead>
             <tr>
@@ -14,14 +15,19 @@
             </tr>
         </thead>
         <tbody>
-            {% for venta in ventas %}
+            {% for compra in compras %}
                 <tr>
-                    <td>{{ venta.id }}</td>
-                    <td>{{ venta.producto.nombre }}</td>
-                    <td>{{ venta.cantidad }}</td>
-                    <td>{{ venta.producto.precio }}</td>
+                    <td>{{ compra.id }}</td>
+                    <td>{{ compra.producto.nombre }}</td>
+                    <td>{{ compra.cantidad }}</td>
+                    <td>{{ compra.producto.precio }}</td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+{% else %}
+    <div class="alert alert-danger" role="alert">
+        No tienes permisos para ver las ventas
+    </div>
+{% endif %}
 {% endblock %}

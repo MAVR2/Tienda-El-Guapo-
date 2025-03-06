@@ -3,22 +3,23 @@
 {% block title %}Comprar {{ producto.nombre }}{% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-center mt-5">
-    <div class="card" style="width: 18rem;">
-        {% if producto.imagen %}
-            <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
-        {% else %}
-            <img src="https://via.placeholder.com/150" class="card-img-top" alt="Imagen no disponible">
-        {% endif %}
-        <div class="card-body">
-            <h5 class="card-title">{{ producto.nombre }}</h5>
-            <p class="card-text">Precio: ${{ producto.precio }}</p>
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary">Confirmar Compra</button>
-            </form>
+    
+        <div class="d-flex justify-content-center mt-5">
+            <div class="card" style="width: 18rem;">
+                {% if producto.imagen %}
+                    <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                {% else %}
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Imagen no disponible">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                    <p class="card-text">Precio: ${{ producto.precio }}</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary">Confirmar Compra</button>
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 {% endblock %}
