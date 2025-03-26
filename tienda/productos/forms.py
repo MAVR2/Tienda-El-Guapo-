@@ -59,13 +59,11 @@ class CompraForm(forms.ModelForm):
     class Meta:
         model = Compra
         fields = ['cantidad']
-        
     def save(self, producto, usuario):
         compra = Compra(
-            producto=producto,
-            usuario=usuario,
-            cantidad=self.cleaned_data['cantidad']
+            producto = producto,
+            usuario = usuario,
+            cantidad = self.cleaned_data['cantidad']
         )
-        
         compra.save()
         return compra
